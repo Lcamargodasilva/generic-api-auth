@@ -3,7 +3,7 @@ import { IsEmail, IsString, MinLength } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class CreateUserDto {
-  @ApiProperty({ example: 'lucas@example.com' })
+  @ApiProperty({ example: 'email@email.com' })
   @IsEmail()
   @Transform(({ value }) =>
     typeof value === 'string' ? value.trim().toLowerCase() : value,

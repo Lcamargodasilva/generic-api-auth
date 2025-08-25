@@ -1,9 +1,11 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private readonly jwtService: JwtService) { }
+
+  @Inject()
+  private readonly jwtService: JwtService;
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -12,7 +14,6 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('Token not found');
     }
     try {
-      // Usa a config do JwtModule (global), sem precisar passar secret manualmente
       const payload = await this.jwtService.verifyAsync(token);
       request.user = payload;
       return true;
