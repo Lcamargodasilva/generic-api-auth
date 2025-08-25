@@ -41,7 +41,7 @@ Este projeto é uma **API de autenticação** construída em [NestJS](https://ne
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/Lcamargodasilva/generic-api-auth.git
 cd seu-repositorio
 ```
 
